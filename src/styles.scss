@@ -26,7 +26,7 @@
       }
     }
 
-    button {
+    button.submit-game {
       border-radius: 4px;
       height: 40px;
       width: 100%;
@@ -71,6 +71,28 @@
     flex-wrap: wrap;
     padding: 10px;
     align-content: stretch;
+
+    &.type-answer {
+      .type-answer-input {
+        background-color: #372b84;
+        min-height: unset;
+        padding: 30px;
+        margin: auto;
+        input {
+          font-weight: bold;
+          font-size: 26px;
+          border: 0;
+          &:focus {
+            box-shadow: none !important;
+          }
+          color: #fff;
+          text-shadow: rgb(0 0 0 / 25%) 0px 0.125rem 0px,
+            rgb(0 0 0) 0px 0px 0.125rem;
+          text-align: center;
+          background-color: transparent;
+        }
+      }
+    }
     .answer {
       width: calc(50% - 0.25rem);
       border-radius: 8px;
@@ -103,6 +125,31 @@
         font-size: 30px;
         font-weight: bold;
       }
+      .correct-answer-check-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        flex: 0 0 auto;
+        background: transparent;
+        margin: 0px 0.5rem;
+        width: 2.875rem;
+        height: 2.875rem;
+        border: 0;
+
+        &.checked {
+          border: 0.25rem solid rgb(255, 255, 255);
+          transition: background 0.2s ease 0s;
+          transform-origin: center bottom;
+          box-shadow: transparent 0px 0px 0px 0.125rem,
+            rgb(0 0 0 / 35%) 0px 0.125rem 0.125rem,
+            rgb(0 0 0 / 35%) 0px 0px 0px 0.0625rem;
+          animation: 4.6s linear 2s infinite normal none running cXGEUf;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          background: rgb(102, 191, 57);
+        }
+      }
     }
     .answer-1 {
       .answer-label {
@@ -130,6 +177,26 @@
       }
       background-color: #26890c;
     }
+
+    .submit-answer-btn {
+      position: absolute;
+      bottom: 8vh;
+      background-color: darkmagenta;
+      color: #fff;
+      font-weight: bold;
+      left: calc(50% - 50px);
+      height: 50px;
+      width: 100px;
+      border-radius: 8px;
+      border: 0;
+      text-shadow: rgb(0 0 0 / 25%) 0px 0.125rem 0px,
+        rgb(0 0 0) 0px 0px 0.125rem;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+      &:active {
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
   }
   .question-footer {
     position: absolute;
@@ -144,5 +211,39 @@
     padding: 0 20px;
     background-color: #fff;
     box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.25);
+  }
+  .question-answer {
+    background-image: url("https://shimatest.shop/background-dep-cho-powerpoint/imager_2_25831_700.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 86vh;
+    color: #fff;
+    .question-tf {
+      padding-top: 40px;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    img {
+      padding-top: 100px;
+    }
+    h3 {
+      padding-top: 20px;
+      color: #fff;
+    }
+  }
+  .question-answer-result {
+    height: 86vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .player-game-result {
+      text-align: center;
+      h1.top {
+        font-size: 80px;
+        color: #1368ce;
+      }
+    }
   }
 }

@@ -5,15 +5,16 @@ import io from "socket.io-client";
 
 import EnterPin from "./pages/EnterPin";
 import PlayGame from "./pages/PlayGame";
-import PreStart from "./pages/PreStart";
 
 import "./styles.scss";
+
+const port = process.env.ENDPOINT || "ws://localhost:3005";
 
 const GameFeature = (props) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(`ws://localhost:3005`);
+    const newSocket = io(port);
     setSocket(newSocket);
 
     return () => newSocket.close();
@@ -25,16 +26,12 @@ const GameFeature = (props) => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/enter-pin"
+          path=""
           element={<EnterPin {...props} socket={socket} />}
         />
         <Route
-          path="/enter-pin/:pin"
+          path="/:pin"
           element={<EnterPin {...props} socket={socket} />}
-        />
-        <Route
-          path="/pre-start/:pin&:name"
-          element={<PreStart {...props} socket={socket} />}
         />
         <Route
           path="/play-game/:socketId"
