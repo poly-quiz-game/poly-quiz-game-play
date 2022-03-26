@@ -8,7 +8,7 @@ import PlayGame from "./pages/PlayGame";
 
 import "./styles.scss";
 
-const port = process.env.ENDPOINT || "ws://localhost:3005";
+const port = "https://poly-quiz-backend.azurewebsites.net";
 
 const GameFeature = (props) => {
   const [socket, setSocket] = useState(null);
@@ -25,14 +25,8 @@ const GameFeature = (props) => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path=""
-          element={<EnterPin {...props} socket={socket} />}
-        />
-        <Route
-          path="/:pin"
-          element={<EnterPin {...props} socket={socket} />}
-        />
+        <Route path="" element={<EnterPin {...props} socket={socket} />} />
+        <Route path="/:pin" element={<EnterPin {...props} socket={socket} />} />
         <Route
           path="/play-game/:socketId"
           element={<PlayGame {...props} socket={socket} />}
