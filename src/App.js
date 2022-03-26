@@ -8,7 +8,7 @@ import PlayGame from "./pages/PlayGame";
 
 import "./styles.scss";
 
-const port = "ws://poly-quiz-backend.azurewebsites.net";
+const port = "https://poly-quiz-backend.azurewebsites.net";
 
 const GameFeature = (props) => {
   const [socket, setSocket] = useState(null);

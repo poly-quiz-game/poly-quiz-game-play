@@ -14,6 +14,7 @@ const EnterPin = ({ socket }) => {
 
   useEffect(() => {
     socket.on("game-info", (game) => {
+      console.log(game);
       setGame(game);
     });
 
@@ -31,6 +32,7 @@ const EnterPin = ({ socket }) => {
     });
 
     socket.on("no-game-found", () => {
+      console.log("o-game-fou");
       setGame(null);
       setError("Phòng không tồn tại!");
     });
@@ -41,6 +43,7 @@ const EnterPin = ({ socket }) => {
   }, []);
 
   const checkGame = (pin) => {
+    console.log("checkGame", pin);
     socket.emit("player-check-game", pin);
   };
 
