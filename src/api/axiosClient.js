@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseURL = process.env.ENDPOINT || "https://poly-quiz-backend.azurewebsites.net/api";
+export const baseURL = process.env.ENDPOINT || "poly-quiz-backend.azurewebsites.net/api";
 
 const axiosClient = axios.create({
   baseURL,
