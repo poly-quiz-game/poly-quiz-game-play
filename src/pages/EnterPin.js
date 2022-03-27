@@ -20,11 +20,11 @@ const EnterPin = ({ socket }) => {
 
     socket.on("get-kicked", () => {
       alert("Bạn đã bị kick ra khỏi phòng!");
-      navigate("/play/enter-pin");
+      navigate("/");
     });
 
     socket.on("game-started", () => {
-      navigate(`/play/play-game/${socket.id}`);
+      navigate(`/play-game/${socket.id}`);
     });
 
     socket.on("joined-lobby", () => {

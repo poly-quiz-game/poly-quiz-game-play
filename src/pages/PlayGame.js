@@ -49,11 +49,11 @@ const PlayGame = ({ socket }) => {
     }
 
     socket.on("no-game-found", () => {
-      navigate(`/play/enter-pin`);
+      navigate(`/`);
     });
 
     socket.on("hostDisconnect-player", () => {
-      navigate(`/play/enter-pin`);
+      navigate(`/`);
     });
 
     socket.on("game-over", (endGameData) => {
