@@ -48,6 +48,10 @@ const PlayGame = ({ socket }) => {
       socket.emit("player-join-game", { socketId: params.socketId });
     }
 
+    socket.on("host-disconnected", () => {
+      navigate("/");
+    });
+
     socket.on("no-game-found", () => {
       navigate(`/`);
     });
@@ -107,7 +111,7 @@ const PlayGame = ({ socket }) => {
     });
 
     return () => {
-      socket.emit("disconnect", socket.id);
+      socket.disconnect();
     };
   }, []);
 
@@ -143,7 +147,9 @@ const PlayGame = ({ socket }) => {
             <h3>Bạn đã đạt top</h3>
             <h1 className="top">{playerData.rank}</h1>
             <br />
-            <Button type="primary">Đóng</Button>
+            <Link to="/">
+              <Button type="primary">Đóng</Button>
+            </Link>
           </div>
         </div>
       </div>

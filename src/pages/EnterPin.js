@@ -13,13 +13,24 @@ const EnterPin = ({ socket }) => {
   const [game, setGame] = useState(null);
 
   useEffect(() => {
+    if (socket?.disconnected) {
+      socket.connect();
+    }
     socket.on("game-info", (game) => {
-      console.log(game);
       setGame(game);
     });
 
     socket.on("get-kicked", () => {
-      alert("Bạn đã bị kick ra khỏi phòng!");
+      setError("Bạn đã bị kick ra khỏi phòng!");
+      setIsOnLobby(false);
+      setGame(null);
+      navigate("/");
+    });
+
+    socket.on("host-disconnected", () => {
+      setError("Phòng đã bị đóng");
+      setGame(null);
+      setIsOnLobby(false);
       navigate("/");
     });
 
