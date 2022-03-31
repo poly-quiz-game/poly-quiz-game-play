@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "antd";
-import { questionTypes } from "../consts";
+import { questionTypes } from "../../consts";
 
 const SelectAnswers = ({ playerAnswer, type, labels }) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);

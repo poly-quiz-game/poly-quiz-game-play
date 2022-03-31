@@ -14,13 +14,12 @@ const EnterPin = ({ socket }) => {
 
   useEffect(() => {
     socket.on("game-info", (game) => {
-      console.log(game);
       setGame(game);
     });
 
     socket.on("get-kicked", () => {
-      alert("Bạn đã bị kick ra khỏi phòng!");
-      navigate("/");
+      setError("Bị kick ra khỏi phòng");
+      setIsOnLobby(false);
     });
 
     socket.on("game-started", () => {
@@ -31,10 +30,9 @@ const EnterPin = ({ socket }) => {
       setIsOnLobby(true);
     });
 
-    socket.on("no-game-found", () => {
-      console.log("o-game-fou");
+    socket.on("no-game-found", (error) => {
       setGame(null);
-      setError("Phòng không tồn tại!");
+      setError(error || "Phòng không tồn tại!");
     });
 
     return () => {
@@ -43,7 +41,6 @@ const EnterPin = ({ socket }) => {
   }, []);
 
   const checkGame = (pin) => {
-    console.log("checkGame", pin);
     socket.emit("player-check-game", pin);
   };
 

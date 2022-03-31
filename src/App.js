@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import io from "socket.io-client";
 
-import EnterPin from "./pages/EnterPin";
-import PlayGame from "./pages/PlayGame";
+import EnterPin from "./playerScreen/pages/EnterPin";
+import PlayGame from "./playerScreen/pages/PlayGame";
 
 import "./styles.scss";
 

@@ -3,7 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { Row, Col, Button, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import "../styles.scss";
-import { questionTypeLabels, questionTypes } from "../consts";
+import { questionTypeLabels, questionTypes } from "../../consts";
 
 import SelectAnswers from "./SelectAnswers";
 import TypeAnswer from "./TypeAnswer";
@@ -49,11 +49,11 @@ const PlayGame = ({ socket }) => {
     }
 
     socket.on("no-game-found", () => {
-      navigate(`/`);
+      navigate(`/play/enter-pin`);
     });
 
     socket.on("hostDisconnect-player", () => {
-      navigate(`/`);
+      navigate(`/play/enter-pin`);
     });
 
     socket.on("game-over", (endGameData) => {
@@ -97,11 +97,12 @@ const PlayGame = ({ socket }) => {
       }));
     });
 
-    socket.on("question-over", (isCorrect) => {
+    socket.on("question-over", (isCorrect, streak) => {
       setState((prevState) => ({
         ...prevState,
         gameState: QUESTION_STATES.showResult,
         isCorrect,
+        streak,
       }));
       socket.emit("get-player-score");
     });
@@ -121,6 +122,10 @@ const PlayGame = ({ socket }) => {
       ...prevState,
       gameState: QUESTION_STATES.waitingResult,
     }));
+  };
+
+  const onDisconnect = () => {
+    socket.disconnect();
   };
 
   const { gameState, isCorrect, question, playerData, gameData, endGameData } =
@@ -143,7 +148,9 @@ const PlayGame = ({ socket }) => {
             <h3>Bạn đã đạt top</h3>
             <h1 className="top">{playerData.rank}</h1>
             <br />
-            <Button type="primary">Đóng</Button>
+            <Button type="primary" onClick={onDisconnect}>
+              Đóng
+            </Button>
           </div>
         </div>
       </div>
