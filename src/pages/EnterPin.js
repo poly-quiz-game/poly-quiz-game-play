@@ -3,6 +3,9 @@ import { Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 
+const REACT_APP_O2AUTH_CLIENT_ID =
+  "767848981447-tebf1tn4llljl98lddf4u4fp7666nqtg.apps.googleusercontent.com";
+
 const EnterPin = ({ socket }) => {
   const navigate = useNavigate();
 
@@ -17,6 +20,7 @@ const EnterPin = ({ socket }) => {
       socket.connect();
     }
     socket.on("game-info", (game) => {
+      console.log("game-info", game);
       setGame(game);
     });
 
@@ -42,10 +46,10 @@ const EnterPin = ({ socket }) => {
       setIsOnLobby(true);
     });
 
-    socket.on("no-game-found", () => {
+    socket.on("no-game-found", (error) => {
       console.log("o-game-fou");
       setGame(null);
-      setError("Phòng không tồn tại!");
+      setError(error || "Phòng không tồn tại!");
     });
 
     return () => {
@@ -59,12 +63,17 @@ const EnterPin = ({ socket }) => {
   };
 
   const responseGoogle = async ({ tokenId }) => {
+    console.log("tokenId", tokenId);
     if (tokenId) {
       joinLobby({ pin, tokenId });
+    } else {
+      setGame(null);
+      setError("Lỗi khi đăng nhập Google!");
     }
   };
 
   const joinLobby = ({ pin, name, tokenId }) => {
+    console.log("player-join-lobby: ", pin, name, tokenId);
     socket.emit("player-join-lobby", { pin, name, tokenId });
   };
 
@@ -109,7 +118,7 @@ const EnterPin = ({ socket }) => {
         <div className="enter-pin-form">
           <p>Đăng nhập Google</p>
           <GoogleLogin
-            clientId={process.env.REACT_APP_O2AUTH_CLIENT_ID}
+            clientId={REACT_APP_O2AUTH_CLIENT_ID}
             buttonText="Login with google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
