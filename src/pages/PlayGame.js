@@ -1,9 +1,10 @@
+import React, { useEffect, useRef, useState } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Button, Spin } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useNavigate, useParams } from "react-router-dom";
 import { questionTypeLabels, questionTypes } from "../consts";
+
 import "../styles.scss";
 import SelectAnswers from "./SelectAnswers";
 import TypeAnswer from "./TypeAnswer";
