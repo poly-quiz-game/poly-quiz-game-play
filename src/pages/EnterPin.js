@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import GoogleLogin from "react-google-login";
+import { Helmet } from "react-helmet";
 
 const REACT_APP_O2AUTH_CLIENT_ID =
   "767848981447-tebf1tn4llljl98lddf4u4fp7666nqtg.apps.googleusercontent.com";
@@ -86,6 +87,10 @@ const EnterPin = ({ socket }) => {
   if (!game) {
     return (
       <div className="join-room__screen">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{"Nhập pin | Poly Quiz Game Play"}</title>
+        </Helmet>
         <div className="enter-pin-form">
           <p>Nhập mã game</p>
           <Input

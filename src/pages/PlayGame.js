@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
-import { Row, Col, Button, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import "../styles.scss";
+import { Button, Spin } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
+import { useNavigate, useParams } from "react-router-dom";
 import { questionTypeLabels, questionTypes } from "../consts";
-
+import "../styles.scss";
 import SelectAnswers from "./SelectAnswers";
 import TypeAnswer from "./TypeAnswer";
 
@@ -138,6 +138,10 @@ const PlayGame = ({ socket }) => {
   if (gameState === QUESTION_STATES.endGame) {
     return (
       <div className="player-game__screen">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{"Nhập pin | Poly Quiz Game Play"}</title>
+        </Helmet>
         <div className="player-info">
           <div className="player-name">{playerData.name}</div>
           <div className="player-score">{playerData.score}</div>

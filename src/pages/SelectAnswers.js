@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "antd";
 import { questionTypes } from "../consts";
+import { Helmet } from "react-helmet";
 
 const SelectAnswers = ({ playerAnswer, type, labels }) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
@@ -29,6 +30,10 @@ const SelectAnswers = ({ playerAnswer, type, labels }) => {
 
   return (
     <div className="answers">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{"Trả lời câu hỏi | Poly Quiz Game Play"}</title>
+      </Helmet>
       {labels.map((label, index) => {
         const isSelected = selectedAnswers.includes(index.toString());
         return (
