@@ -98,6 +98,10 @@ const EnterPin = ({ socket }) => {
             value={pin}
             onChange={(e) => {
               setError("");
+              const hasCharactor = /[a-zA-Z]/;
+              if (hasCharactor.test(e.target.value)) {
+                return
+              }
               setPin(e.target.value);
             }}
             onKeyDown={(e) => {
