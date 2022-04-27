@@ -38,7 +38,6 @@
 }
 
 .player-game__screen {
-  height: 100vh;
   .player-info {
     .player-score {
       padding: 5px 20px;
@@ -101,7 +100,6 @@
       padding: 10px;
       position: relative;
       color: #fff;
-      padding: 20px 10px 20px 40px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -245,5 +243,14 @@
         color: #1368ce;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .player-game__screen .answers {
+    min-height: 78vh;
+  }
+  .question-answer {
+    height: 78vh;
   }
 }
